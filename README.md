@@ -1,0 +1,1 @@
+# KawaharaChiaki_managementSystem
