@@ -77,9 +77,11 @@ class User extends Authenticatable
     // いいねしているかどうか
     public function is_Like($post_id){
         return Like::where('like_user_id', Auth::id())->where('like_post_id', $post_id)->first(['likes.id']);
+        //いいねした人のID＝like_user_idの中から認証している人のidを取っていく>メソッドチェーンでAND検索＞引数で持ってきた$post_idの最初を返す。（firstメソッドは引数の最初のレコードを単一で返す）
     }
 
     public function likePostId(){
         return Like::where('like_user_id', Auth::id());
+        //返し値にLikeDBのログイン認証した人のIDがいいねした人のIDを返す
     }
 }

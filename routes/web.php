@@ -15,17 +15,25 @@ Route::group(['middleware' => ['guest']], function(){
     Route::namespace('Auth')->group(function(){
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
         Route::post('/register/post', 'RegisterController@registerPost')->name('registerPost');
+        //REGISTER=登録
         Route::get('/login', 'LoginController@loginView')->name('loginView');
+        //ログインページに遷移する()
         Route::post('/login/post', 'LoginController@loginPost')->name('loginPost');
     });
 });
 
+
 Route::group(['middleware' => 'auth'], function(){
+    //middleware=リクエストの処理の前後にプログラムを書くファイル
+    //middleware処理の骨組み（スケルトン）をartisanを使って作れる
+    //ログインユーザのできることをここに書く
     Route::namespace('Authenticated')->group(function(){
         Route::namespace('Top')->group(function(){
             Route::get('/logout', 'TopsController@logout');
             Route::get('/top', 'TopsController@show')->name('top.show');
         });
+
+
         Route::namespace('Calendar')->group(function(){
             Route::namespace('General')->group(function(){
                 Route::get('/calendar/{user_id}', 'CalendarsController@show')->name('calendar.general.show');
@@ -60,4 +68,5 @@ Route::group(['middleware' => 'auth'], function(){
             Route::post('/user/profile/edit', 'UsersController@userEdit')->name('user.edit');
         });
     });
+
 });

@@ -39,20 +39,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        //擬似変数this(クラス内のメソッドにアクセスする)からmiddlewareの引数guestにアクセス>
+        //except()で指定したキー「以外」のデータを取得する
     }
 
     public function loginView()
     {
         return view('auth.login.login');
+
+        //auth/login directoryの中のlogin.bladeが該当ファイル
     }
 
     public function loginPost(Request $request)
     {
         $userdata = $request -> only('mail_address', 'password');
         if (Auth::attempt($userdata)) {
+            //ログイン認証をする為のデータがあればtop画面へ行く
             return redirect('/top');
         }else{
             return redirect('/login')->with('flash_message', 'name or password is incorrect');
+            //そうでなければログイン画面にメッセージ付きで戻す
         }
     }
 

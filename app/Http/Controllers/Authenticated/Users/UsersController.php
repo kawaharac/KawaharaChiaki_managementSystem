@@ -13,6 +13,9 @@ use App\Searchs\SearchResultFactories;
 
 class UsersController extends Controller
 {
+    public function __construct(){
+    $this->middleware('auth');
+    }
 
     public function showUsers(Request $request){
         $keyword = $request->keyword;
