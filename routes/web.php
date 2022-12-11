@@ -15,7 +15,7 @@ Route::group(['middleware' => ['guest']], function(){
     Route::namespace('Auth')->group(function(){
         Route::get('/register', 'RegisterController@registerView')->name('registerView');
         Route::post('/register/post', 'RegisterController@registerPost')->name('registerPost');
-        //REGISTER=登録
+        //REGISTER=登録 新規登録
         Route::get('/login', 'LoginController@loginView')->name('loginView');
         //ログインページに遷移する()
         Route::post('/login/post', 'LoginController@loginPost')->name('loginPost');

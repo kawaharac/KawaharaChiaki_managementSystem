@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
+use App\Http\Requests\TestPostRequest;
 
 use App\Models\Users\Subjects;
 
@@ -53,7 +54,8 @@ class RegisterController extends Controller
         return view('auth.register.register', compact('subjects'));
     }
 
-    public function registerPost(Request $request)
+    public function registerPost(TestPostRequest $request)
+    //Controllerの引数にformリクエストをあてる(useしているのでフルパスは略す)
     {
         DB::beginTransaction();
         try{
@@ -61,7 +63,9 @@ class RegisterController extends Controller
             $old_month = $request->old_month;
             $old_day = $request->old_day;
             $data = $old_year . '-' . $old_month . '-' . $old_day;
+            //$data= 日付をまとめたもの
             $birth_day = date('Y-m-d', strtotime($data));
+            //strtotime タイムスタンプ操作　date第一引数＝整える形、第二引数＝持ち出す値
             $subjects = $request->subject;
 
             $user_get = User::create([

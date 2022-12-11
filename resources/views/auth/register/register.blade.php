@@ -63,6 +63,7 @@
         <div class="mt-3">
           <label class="d-block m-0 aa" style="font-size:13px">生年月日</label>
           <select class="old_year" name="old_year">
+            <!-- 連想配列？ -->
             <option value="none">-----</option>
             <option value="1985">1985</option>
             <option value="1986">1986</option>
@@ -142,7 +143,7 @@
             <option value="30">30</option>
             <option value="31">31</option>
           </select>
-          <label style="font-size:13px">月</label>
+          <label style="font-size:13px">日</label>
         </div>
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">役職</label>
