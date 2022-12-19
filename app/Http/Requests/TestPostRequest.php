@@ -73,7 +73,14 @@ class TestPostRequest extends FormRequest
             "email" => "メールアドレスの形式で入力してください",
             "regex" => "全角カタカナで入力してください",
             "string" => "文字で入力してください",
-            "password.max" => "30文字以内で入力してください"
+            "max" => "30文字以内で入力してください",
+            "over_name.max" => "10文字以内で入力してください",
+            "under_name.max" => "10文字以内で入力してください",
+            "min" => "8文字以上で入力してください",
+            "mail_address.max" => "100文字以内で入力してください",
+            "unique:users,mail_address" => "登録済みのメールアドレスは無効です",
+            "confirmed" => "パスワード確認が一致しません",
+            "date" => "有効な日付に直してください"
         ];
     }
 }
