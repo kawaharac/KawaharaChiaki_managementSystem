@@ -72,7 +72,7 @@
           <select class="old_year" name="old_year">
             <!-- 連想配列？ -->
             <option value="none">-----</option>
-            <option value="1985">1985</option>
+            <!-- <option value="1985">1985</option>
             <option value="1986">1986</option>
             <option value="1987">1987</option>
             <option value="1988">1988</option>
@@ -86,7 +86,7 @@
             <option value="1996">1996</option>
             <option value="1997">1997</option>
             <option value="1998">1998</option>
-            <option value="1999">1999</option>
+            <option value="1999">1999</option> -->
             <option value="2000">2000</option>
             <option value="2001">2001</option>
             <option value="2002">2002</option>
@@ -187,8 +187,9 @@
           </div>
         </div>
         <div class="mt-5 text-right">
-          <input type="submit" class="btn btn-primary register_btn" disabled value="新規登録" onclick="return confirm('登録してよろしいですか？')">
+          <input type="submit" class="btn btn-primary register_btn"  value="新規登録" onclick="return confirm('登録してよろしいですか？')">
         </div>
+        <!-- disabled -->
         <div class="text-center">
           <a href="{{ route('loginView') }}">ログイン</a>
         </div>

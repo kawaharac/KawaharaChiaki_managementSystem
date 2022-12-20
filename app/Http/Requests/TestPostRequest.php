@@ -31,9 +31,9 @@ class TestPostRequest extends FormRequest
     public function getValidatorInstance() {
         //生年月日をまとめて値に直す
         $old_year = $this->input('old_year');
-        $old_mouth = $this->input('old_mouth');
+        $old_month = $this->input('old_month');
         $old_day = $this->input('old_day');
-        $datetime = $old_year .'-'. $old_mouth .'-'. $old_day;
+        $datetime = $old_year .'-'. $old_month .'-'. $old_day;
         // 日付を作成(ex. 2020-1-20)
         //$datetime_validation = implode('-', $datetime);
 
@@ -56,7 +56,7 @@ class TestPostRequest extends FormRequest
             'under_name' => 'required|string|max:10',
             'over_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
             'under_name_kana' => 'required|string|max:30|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
-            'mail_address' => 'required|unique:users,mail_address|max:100|email',
+            'mail_address' => 'required|unique:users|max:100|email',
             'sex' => 'required|in:1,2,3',
             //ラジオボタンの値を入れる（要：bladeのvalue確認）
             //生年月日　ヒントまず日にちの形に成型するそれからバリデーションをかける
@@ -78,7 +78,7 @@ class TestPostRequest extends FormRequest
             "under_name.max" => "10文字以内で入力してください",
             "min" => "8文字以上で入力してください",
             "mail_address.max" => "100文字以内で入力してください",
-            "unique:users,mail_address" => "登録済みのメールアドレスは無効です",
+            "unique" => "登録済みのメールアドレスは無効です",
             "confirmed" => "パスワード確認が一致しません",
             "date" => "有効な日付に直してください"
         ];
