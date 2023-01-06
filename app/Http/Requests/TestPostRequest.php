@@ -60,9 +60,10 @@ class TestPostRequest extends FormRequest
             'sex' => 'required|in:1,2,3',
             //ラジオボタンの値を入れる（要：bladeのvalue確認）
             //生年月日　ヒントまず日にちの形に成型するそれからバリデーションをかける
-            'datetime_validation' => 'required|date',
+            'datetime_validation' => 'required|date|after:1999-12-31|before:tomorrow',
             'role' => 'required|in:1,2,3,4',
-            'password' => 'required|min:8|max:30|confirmed:password',
+            'password' => 'required|min:8|max:30|confirmed:password|alpha_dash',
+            'password_confirmation' => 'required|min:8|max:30|alpha_dash'
         ];
 
     }
@@ -80,7 +81,9 @@ class TestPostRequest extends FormRequest
             "mail_address.max" => "100文字以内で入力してください",
             "unique" => "登録済みのメールアドレスは無効です",
             "confirmed" => "パスワード確認が一致しません",
-            "date" => "有効な日付に直してください"
+            "datetime_validation.date" => "有効な日付に直してください",
+            "datetime_validation.after" => "2000年1月1日から今日までの日付を入力してください",
+            "datetime_validation.before" => "2000年1月1日から今日までの日付を入力してください"
         ];
     }
 }

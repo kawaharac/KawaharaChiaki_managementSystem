@@ -72,7 +72,7 @@
           <select class="old_year" name="old_year">
             <!-- 連想配列？ -->
             <option value="none">-----</option>
-            <!-- <option value="1985">1985</option>
+            <option value="1985">1985</option>
             <option value="1986">1986</option>
             <option value="1987">1987</option>
             <option value="1988">1988</option>
@@ -86,7 +86,7 @@
             <option value="1996">1996</option>
             <option value="1997">1997</option>
             <option value="1998">1998</option>
-            <option value="1999">1999</option> -->
+            <option value="1999">1999</option>
             <option value="2000">2000</option>
             <option value="2001">2001</option>
             <option value="2002">2002</option>
@@ -98,6 +98,7 @@
             <option value="2008">2008</option>
             <option value="2009">2009</option>
             <option value="2010">2010</option>
+            <option value="2023">2023</option>
           </select>
           <label style="font-size:13px">年</label>
           <select class="old_month" name="old_month">
@@ -183,7 +184,8 @@
         <div class="mt-3">
           <label class="d-block m-0" style="font-size:13px">確認用パスワード</label>
           <div class="border-bottom border-primary">
-            <input type="password" class="border-0 w-100 password_confirmation" name="password">
+            <input type="password" class="border-0 w-100 password_confirmation" name="password_confirmation">
+            <!-- 確認用パスワードの名前（name）を修正。 -->
           </div>
         </div>
         <div class="mt-5 text-right">
