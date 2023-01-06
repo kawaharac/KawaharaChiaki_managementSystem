@@ -62,8 +62,9 @@ class TestPostRequest extends FormRequest
             //生年月日　ヒントまず日にちの形に成型するそれからバリデーションをかける
             'datetime_validation' => 'required|date|after:1999-12-31|before:tomorrow',
             'role' => 'required|in:1,2,3,4',
-            'password' => 'required|min:8|max:30|confirmed:password|alpha_dash',
-            'password_confirmation' => 'required|min:8|max:30|alpha_dash'
+            'password' => 'required|min:8|max:30|confirmed:password',
+            'password_confirmation' => 'required|min:8|max:30'
+            //確認用パスワードは必ずパスワード名の後ろに”_confirmation”とつける
         ];
 
     }
