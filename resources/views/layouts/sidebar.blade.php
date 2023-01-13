@@ -23,7 +23,7 @@
       <p><a href="/logout">ログアウト</a></p>
       <p><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
       <!-- 予約確認とスクール枠登録は管理者のみ表示 -->
-      @if(Auth::user()->role() != 4)<!--比較演算子に直す-->
+      @if(Auth::user()->role < 4)<!--比較演算子に直す-->
       <p><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
       <p><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
       @endif
