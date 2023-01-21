@@ -16,6 +16,7 @@ class ReserveSettings extends Model
     ];
 
     public function users(){
+        //多対多のリレーション（省略方法があるが、最初は４つ書くこと）
         return $this->belongsToMany('App\Models\Users\User', 'reserve_setting_users', 'reserve_setting_id', 'user_id')->withPivot('reserve_setting_id', 'id');
     }
 }

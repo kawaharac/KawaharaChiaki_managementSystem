@@ -63,6 +63,7 @@ class User extends Authenticatable
     }
 
     public function reserveSettings(){
+        //多対多のリレーション（省略方法があるが、最初は４つ書くこと）
         return $this->belongsToMany('App\Models\Calendars\ReserveSettings', 'reserve_setting_users', 'user_id', 'reserve_setting_id')->withPivot('id');
     }
 
@@ -70,8 +71,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Posts\Like', 'likes', 'like_user_id', 'like_post_id')->withPivot('id');
     }
 
+    //ここがsubjectsテーブルとの関係性を出すところかな？2023/1/21
+    //belongsToMany('Modelのある場所','中間テーブル名','中間テーブルの該当id名１','中間テーブルの該当id名２')
     public function subjects(){
-        return ;// リレーションの定義
+        return $this->belongsToMany('App\Models\Users\Subjects', 'subject_users', 'user_id', 'subject_id')->withPivot('user_id', 'id');
+        // リレーションの定義
     }
 
     // いいねしているかどうか
