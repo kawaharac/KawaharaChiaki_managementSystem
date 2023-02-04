@@ -14,6 +14,7 @@
             <i class="fa fa-comment"></i><span class=""></span>
           </div>
           <div>
+            <!-- 機能追加（掲示板） #771いいねの数を表示 -->
             @if(Auth::user()->is_Like($post->id))
             <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
             @else
