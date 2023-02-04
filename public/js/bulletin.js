@@ -47,8 +47,8 @@ $(function () {
 
     });
   });
-
-  $('.edit-modal-open').on('click',function(){
+  //編集ボタン
+  $('.edit-modal-open').on('click', function () {
     $('.js-modal').fadeIn();
     var post_title = $(this).attr('post_title');
     var post_body = $(this).attr('post_body');
@@ -62,5 +62,6 @@ $(function () {
     $('.js-modal').fadeOut();
     return false;
   });
+
 
 });
