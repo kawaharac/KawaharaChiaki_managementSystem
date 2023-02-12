@@ -15,11 +15,14 @@ use Auth;
 
 class PostsController extends Controller
 {
+    //<!-- PostsController.php -->
     public function show(Request $request){
+        //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下がない事に留意)
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
         $like = new Like;
+        //変数＄likeをインスタンス化。
         $post_comment = new Post;
         if(!empty($request->keyword)){
             //もしリクエストからキーワードがなければ、下の処理を行う。
@@ -40,6 +43,7 @@ class PostsController extends Controller
             ->where('user_id', Auth::id())->get();
         }
         return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        //compactでここに表記した複数の変数を紐付け。（bladeで変数宣言せずいきなり使うことができる）
     }
 
     public function postDetail($post_id){
@@ -88,18 +92,21 @@ class PostsController extends Controller
     }
 
     public function myBulletinBoard(){
+        //自分のlikeカウント？=>右の「自分の投稿」をクリックした時の動作
         $posts = Auth::user()->posts()->get();
         $like = new Like;
         return view('authenticated.bulletinboard.post_myself', compact('posts', 'like'));
     }
 
     public function likeBulletinBoard(){
+        //相手のLikeカウント？=>>右の「いいねした投稿」をクリックした時の動作
         $like_post_id = Like::with('users')->where('like_user_id', Auth::id())->get('like_post_id')->toArray();
         $posts = Post::with('user')->whereIn('id', $like_post_id)->get();
         $like = new Like;
         return view('authenticated.bulletinboard.post_like', compact('posts', 'like'));
     }
 
+    //いいねはここ？（2023-2-12）like_user_idをcountsすればいいと思っている
     public function postLike(Request $request){
         Auth::user()->likes()->attach($request->post_id);
         return response()->json();

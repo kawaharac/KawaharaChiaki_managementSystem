@@ -18,6 +18,7 @@ class Like extends Model
     }
 
     public function likeCounts($post_id){
+        //いいねカウントの処理（post.blade.php参照）
         return $this->where('like_post_id', $post_id)->get()->count();
     }
 }

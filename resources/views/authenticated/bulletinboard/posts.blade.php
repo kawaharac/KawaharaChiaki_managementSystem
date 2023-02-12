@@ -1,3 +1,5 @@
+<!-- posts.blade.php -->
+
 @extends('layouts.sidebar')
 
 @section('content')
@@ -16,9 +18,10 @@
           <div>
             <!-- 機能追加（掲示板） #771いいねの数を表示 -->
             @if(Auth::user()->is_Like($post->id))
-            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
+            <!-- いいねの数正常に表示、完了（謎：$likeはどこから来たのか=>解決：web.php紐付けはpostscontroller.phpより） -->
             @else
-            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}"></span></p>
+            <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @endif
           </div>
         </div>
