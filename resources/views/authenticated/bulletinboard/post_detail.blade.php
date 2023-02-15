@@ -11,6 +11,7 @@
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
             <a class="delete_modal_open" href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('削除してよろしいですか？')">削除</a>
             <!-- モーダルウィンドウを付ける：機能追加（掲示板） #770お問い合わせ　aタグに  -->
+            <!-- 投稿の編集/削除時に確認メッセージを追加 -->
           </div>
         </div>
 
