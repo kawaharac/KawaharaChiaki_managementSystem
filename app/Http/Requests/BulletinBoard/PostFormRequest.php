@@ -21,6 +21,7 @@ class PostFormRequest extends FormRequest
      *
      * @return array
      */
+    //投稿のバリデーションはこちら。
     public function rules()
     {
         return [

@@ -16,8 +16,9 @@ use Auth;
 class PostsController extends Controller
 {
     //<!-- PostsController.php -->
-    public function show(Request $request){
-        //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下がない事に留意)
+    public function show(PostFormRequest $request){
+        //Request>PostFormRequestに変更23/2/25
+        //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下はない事に留意)
         $posts = Post::with('user', 'postComments')->get();
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
@@ -65,7 +66,7 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
 //投稿を編集する
-    public function postEdit(Request $request){
+    public function postEdit(PostFormRequest $request){
         Post::where('id', $request->post_id)->update([
             'post_title' => $request->post_title,
             'post' => $request->post_body,
