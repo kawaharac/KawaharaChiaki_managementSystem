@@ -25,6 +25,15 @@
           <span class="ml-5">{{ $post->created_at }}</span>
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
+        <!-- バリデーション -->
+         @if($errors->first('post_title'))
+      <span class="error_message">{{ $errors->first('post_title') }}</span>
+      <!-- エラーが合ったらここにバリデーション表示 -->
+      @endif
+         @if($errors->first('post_body'))
+      <span class="error_message">{{ $errors->first('post_body') }}</span>
+      <!-- エラーが合ったらここにバリデーション表示 -->
+      @endif
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">

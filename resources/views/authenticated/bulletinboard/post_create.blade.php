@@ -23,6 +23,7 @@
     <div class="mt-3">
       @if($errors->first('post_body'))
       <span class="error_message">{{ $errors->first('post_body') }}</span>
+      <!-- エラーが合ったらここにバリデーション表示 -->
       @endif
       <p class="mb-0">投稿内容</p>
       <textarea class="w-100" form="postCreate" name="post_body">{{ old('post_body') }}</textarea>
