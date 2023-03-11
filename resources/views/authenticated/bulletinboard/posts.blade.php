@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="board_area w-100 border m-auto d-flex">
-  <div class="post_view w-75 mt-5">
+  <post_statusdiv class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <div class="post_area border w-75 m-auto p-3">
@@ -13,22 +13,30 @@
       <div class="post_bottom_area d-flex">
         <div class="d-flex post_status">
           <div class="mr-5">
-            <i class="fa fa-comment"></i><span class=""></span>
+            <!--機能追加（掲示板） #772コメントの数を表示 -->
+            <!-- 3/11 コメントのカウント数を入れた＞#771同様UsersControllerへis_Comment -->
+          @if(Auth::user()->is_Comment($post->id))
+            <i class="fas fa-comment"></i><span class="" post_id="{{ $post->id }}"></span>
+          @endif
           </div>
           <div>
             <!-- 機能追加（掲示板） #771いいねの数を表示 -->
             @if(Auth::user()->is_Like($post->id))
-            <p class="m-0"><i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
-            <!-- いいねの数正常に表示、完了（謎：$likeはどこから来たのか=>解決：web.php紐付けはpostscontroller.phpより） -->
+            <p class="m-0">
+              <i class="fas fa-heart un_like_btn" post_id="{{ $post->id }}"></i>
+              <span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span>
+            </p>
+            <!-- いいねの数正常に表示、完了（謎：$likeはどこから来たのか=>解決：web.php紐付けはpostscontroller.phpより　likeCountsはLike.phpより） -->
             @else
             <p class="m-0"><i class="fas fa-heart like_btn" post_id="{{ $post->id }}"></i><span class="like_counts{{ $post->id }}">{{ $like->likeCounts($post->id) }}</span></p>
             @endif
           </div>
+
         </div>
       </div>
     </div>
     @endforeach
-  </div>
+  </post_statusdiv>
   <div class="other_area border w-25">
     <div class="border m-4">
       <div class=""><a href="{{ route('post.input') }}">投稿</a></div>

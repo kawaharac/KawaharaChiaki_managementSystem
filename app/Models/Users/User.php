@@ -84,6 +84,12 @@ class User extends Authenticatable
         //いいねした人のID＝like_user_idの中から認証している人のidを取っていく>メソッドチェーンでAND検索＞引数で持ってきた$post_idの最初を返す。（firstメソッドは引数の最初のレコードを単一で返す）
     }
 
+    //コメントされているかどうか
+    public function is_Comment($post_id){
+        return Like::where('user_id', Auth::id())->where('post_id', $post_id)->first(['post_comments.id']);
+        //ココ変更したらエラー出たSQLSTATE[42S22]: Column not found: 1054 Unknown column 'post_comments.id' in 'field list' (SQL: select `post_comments`.`id` from `likes` where `user_id` = 1 and `post_id` = 4 limit 1) (View: C:\Users\USER\Documents\KawaharaChiaki_managementSystem\resources\views\authenticated\bulletinboard\posts.blade.php)
+    }
+
     public function likePostId(){
         return Like::where('like_user_id', Auth::id());
         //返し値にLikeDBのログイン認証した人のIDがいいねした人のIDを返す
