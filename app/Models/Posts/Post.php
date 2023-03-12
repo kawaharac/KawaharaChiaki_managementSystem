@@ -21,6 +21,7 @@ class Post extends Model
 
     public function postComments(){
         return $this->hasMany('App\Models\Posts\PostComment');
+        //post_commentsテーブルをリレーションで使用可能にしている
     }
 
     public function subCategories(){
@@ -30,7 +31,9 @@ class Post extends Model
     // コメント数
     public function commentCounts($post_id){
         return Post::with('postComments')->find($post_id)->postComments();
+    }
         //返し値＝PostモデルのpostCommentsメソッド内の変数$post_id（投稿した人のID）。
         //postCommentsメソッドで一対多の紐付け。
-    }
+
+
 }

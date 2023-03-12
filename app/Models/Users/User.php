@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Posts\PostComment;
 
 use App\Models\Posts\Like;
 use Auth;
@@ -86,7 +87,7 @@ class User extends Authenticatable
 
     //コメントされているかどうか
     public function is_Comment($post_id){
-        return Like::where('user_id', Auth::id())->where('post_id', $post_id)->first(['post_comments.id']);
+        return PostComment::where('user_id', Auth::id())->where('post_id', $post_id)->first(['post_comments.id']);
         //ココ変更したらエラー出たSQLSTATE[42S22]: Column not found: 1054 Unknown column 'post_comments.id' in 'field list' (SQL: select `post_comments`.`id` from `likes` where `user_id` = 1 and `post_id` = 4 limit 1) (View: C:\Users\USER\Documents\KawaharaChiaki_managementSystem\resources\views\authenticated\bulletinboard\posts.blade.php)
     }
 

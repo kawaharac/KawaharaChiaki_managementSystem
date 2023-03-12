@@ -20,13 +20,14 @@ class PostsController extends Controller
         //Request>PostFormRequestに変更23/2/25
         //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下はない事に留意)
         $posts = Post::with('user', 'postComments')->get();
+        //Postを全部ＧＥＴしている
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
         $like = new Like;
         //変数＄likeをインスタンス化。
         $post_comment = new Post;
         if(!empty($request->keyword)){
-            //もしリクエストからキーワードがなければ、下の処理を行う。
+            //もしリクエストからキーワードがあれば、下の処理を行う。❶withメソッド＝Posts.phpよりリレーションの記述
             $posts = Post::with('user', 'postComments')
             ->where('post_title', 'like', '%'.$request->keyword.'%')
             ->orWhere('post', 'like', '%'.$request->keyword.'%')->get();

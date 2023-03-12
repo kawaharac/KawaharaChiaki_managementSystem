@@ -7,6 +7,7 @@
   <post_statusdiv class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
+    <!-- PostsControllerよりshowメソッドの中の返し値「posts」を変数$postとして使用できるようにしている -->
     <div class="post_area border w-75 m-auto p-3">
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
@@ -15,9 +16,9 @@
           <div class="mr-5">
             <!--機能追加（掲示板） #772コメントの数を表示 -->
             <!-- 3/11 コメントのカウント数を入れた＞#771同様UsersControllerへis_Comment -->
-          @if(Auth::user()->is_Comment($post->id))
-            <i class="fas fa-comment"></i><span class="" post_id="{{ $post->id }}"></span>
-          @endif
+
+            <i class="fas fa-comment"></i><span class="" post_id="{{ $post->id }}">{{ $post->commentCounts($post->id)->count() }}</span></span>
+
           </div>
           <div>
             <!-- 機能追加（掲示板） #771いいねの数を表示 -->
