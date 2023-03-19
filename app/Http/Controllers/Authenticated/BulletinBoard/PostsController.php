@@ -11,6 +11,7 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\CommentCreateRequest;
 use Auth;
 
 class PostsController extends Controller
@@ -83,8 +84,8 @@ class PostsController extends Controller
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
-
-    public function commentCreate(Request $request){
+//コメントを作る
+    public function commentCreate(CommentCreateRequest $request){
         PostComment::create([
             'post_id' => $request->post_id,
             'user_id' => Auth::id(),
