@@ -17,6 +17,7 @@
       </div>
       <div class="">
         @can('admin')
+        <!-- プロフィール画面（#775） -->
         <span class="subject_edit_btn">選択科目の編集</span>
         <div class="subject_inner">
           <form action="{{ route('user.edit') }}" method="post">

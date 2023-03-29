@@ -29,7 +29,7 @@ class UsersController extends Controller
         $subjects = Subjects::all();
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
-
+//プロフィール画面（#775）
     public function userProfile($id){
         $user = User::with('subjects')->findOrFail($id);
         $subject_lists = Subjects::all();
