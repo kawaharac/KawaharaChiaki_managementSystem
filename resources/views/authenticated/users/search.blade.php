@@ -42,8 +42,17 @@
         @endif
       </div>
       <div>
-        @if($user->role == 4)
+        @if($user->role == 4)<!-- 一覧画面で選択科目の表示 -->
         <span>選択科目 :</span>
+          @foreach($subjects as $subject)
+            @if($subject->id == 1)
+            <span>国語</span>
+            @elseif($subject->id == 2)
+            <span>数学</span>
+            @else<!-- なぜかここだけ３連続で表示されてしまう23/4/1 -->
+            <span>英語</span>
+            @endif
+          @endforeach
         @endif
       </div>
     </div>
@@ -88,6 +97,7 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            <!-- 検索条件欄に選択科目の表示を追加 -->
           </div>
         </div>
       </div>
