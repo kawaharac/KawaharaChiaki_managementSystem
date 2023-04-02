@@ -79,6 +79,7 @@
       </div>
       <div class="">
         <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
+        <!-- 検索条件欄に選択科目の表示を追加 -->
         <div class="search_conditions_inner">
           <div>
             <label>性別</label>
@@ -97,6 +98,12 @@
           </div>
           <div class="selected_engineer">
             <label>選択科目</label>
+            @foreach($subjects as $subject)
+            <div class="">
+              <input type="checkbox" name="subject[]" value="{{ $subject->id }}">
+              <label>{{ $subject->subject }}</label>
+            </div>
+            @endforeach
             <!-- 検索条件欄に選択科目の表示を追加 -->
           </div>
         </div>
