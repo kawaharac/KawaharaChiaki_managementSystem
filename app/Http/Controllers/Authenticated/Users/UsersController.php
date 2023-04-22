@@ -9,7 +9,7 @@ use Gate;
 use App\Models\Users\User;
 use App\Models\Users\Subjects;
 use App\Searchs\DisplayUsers;
-use App\Searchs\SearchResultFactories;
+use App\Searchs\SearchResultFactories;//#777のメソッドはここ
 
 class UsersController extends Controller
 {
@@ -25,7 +25,7 @@ class UsersController extends Controller
         $role = $request->role;
         $subjects = $request->subject;// ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
-        $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);
+        $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);//検索で絞り込んだ結果＃７７７
         $subjects = Subjects::all();
         return view('authenticated.users.search', compact('users', 'subjects'));
     }

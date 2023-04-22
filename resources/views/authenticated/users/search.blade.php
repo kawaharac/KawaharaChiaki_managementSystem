@@ -49,7 +49,7 @@
             <span>国語</span>
             @elseif($subject->id == 2)
             <span>数学</span>
-            @else<!-- なぜかここだけ３連続で表示されてしまう23/4/1 -->
+            @else
             <span>英語</span>
             @endif
           @endforeach
@@ -97,10 +97,10 @@
             </select>
           </div>
           <div class="selected_engineer">
-            <label>選択科目</label>
+            <label>選択科目</label><!-- 選択科目の中身を読み込みする -->
             @foreach($subjects as $subject)
             <div class="">
-              <input type="checkbox" name="subject[]" value="{{ $subject->id }}">
+              <input type="checkbox" name="subject[]" value="{{ $subject->id }}" form="userSearchRequest">
               <label>{{ $subject->subject }}</label>
             </div>
             @endforeach

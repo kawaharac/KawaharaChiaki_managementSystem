@@ -20,7 +20,7 @@ class PostsController extends Controller
     public function show(PostFormRequest $request){
         //Request>PostFormRequestに変更23/2/25
         //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下はない事に留意)
-        $posts = Post::with('user', 'postComments')->get();
+        $posts = Post::with('user', 'postComments')->get();//withで他のテーブルの情報を持ってくる　リレーションでできている
         //Postを全部ＧＥＴしている
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
