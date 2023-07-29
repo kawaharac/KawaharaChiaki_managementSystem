@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'under_name' => 'man',
                 'over_name_kana' => 'アンパン',
                 'under_name_kana' => 'マン',
-                'mail_address' => 'ddd@com',
+                'mail_address' => '123@com',
                 'sex' => '1', //性別(1が男)
                 'birth_day' => '2000-01-01', //誕生日
                 'role' => '1', //権限
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
                 'under_name' => 'man',
                 'over_name_kana' => 'バイキン',
                 'under_name_kana' => 'マン',
-                'mail_address' => 'ccc@com',
+                'mail_address' => '456@com',
                 'sex' => '1', //性別(1が男)
                 'birth_day' => '2000-10-11', //誕生日
                 'role' => '1', //権限
