@@ -25,7 +25,7 @@ class UsersController extends Controller
         $role = $request->role;
         $subjects = $request->subject;// ここで検索時の科目を受け取る
         $userFactory = new SearchResultFactories();
-        $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);//検索で絞り込んだ結果＃７７７
+        $users = $userFactory->initializeUsers($keyword, $category, $updown, $gender, $role, $subjects);//検索で絞り込んだ結果＃777
         $subjects = Subjects::all();
         return view('authenticated.users.search', compact('users', 'subjects'));
     }
