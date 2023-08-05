@@ -462,6 +462,8 @@ class ComposerStaticInite8fd1712de826aad53f5add106203fa9
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\BulletinBoard\\PostFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BulletinBoard/PostFormRequest.php',
+        'App\\Http\\Requests\\CommentCreateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CommentCreateRequest.php',
+        'App\\Http\\Requests\\TestPostRequest' => __DIR__ . '/../..' . '/app/Http/Requests/TestPostRequest.php',
         'App\\Models\\Calendars\\ReserveSettings' => __DIR__ . '/../..' . '/app/Models/Calendars/ReserveSettings.php',
         'App\\Models\\Categories\\MainCategory' => __DIR__ . '/../..' . '/app/Models/Categories/MainCategory.php',
         'App\\Models\\Categories\\SubCategory' => __DIR__ . '/../..' . '/app/Models/Categories/SubCategory.php',
