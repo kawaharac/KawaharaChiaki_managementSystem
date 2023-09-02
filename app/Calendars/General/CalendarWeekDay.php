@@ -59,7 +59,7 @@ class CalendarWeekDay
     $html[] = '<select name="getPart[]" class="border-primary" style="width:70px; border-radius:5px;" form="reserveParts">';
     $html[] = '<option value="" selected></option>';
     if ($one_part_frame == "0") {
-      $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>'; //ここの”ゼロ”を直す
+      $html[] = '<option value="1" disabled>リモ1部(残り0枠)</option>';
     } else {
       $html[] = '<option value="1">リモ1部(残り' . $one_part_frame . '枠)</option>';
     }
@@ -80,6 +80,7 @@ class CalendarWeekDay
   function getDate()
   {
     return '<input type="hidden" value="' . $this->carbon->format('Y-m-d') . '" name="getData[]" form="reserveParts">';
+    //CalendarsController.phpの”public function reserve(Request $request)”につながる
   }
 
   function everyDay()

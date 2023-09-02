@@ -24,7 +24,8 @@ class CalendarsController extends Controller
         DB::beginTransaction();
         try {
             $getPart = $request->getPart; //getPartを今月分すべてに直す必要がある
-            $getDate = $request->getData;
+            $getDate = $request->getData; //getData = getDate
+            dd($getDate);
             $reserveDays = array_filter(array_combine($getDate, $getPart));
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
