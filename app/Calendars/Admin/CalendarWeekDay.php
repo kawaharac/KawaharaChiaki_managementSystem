@@ -39,13 +39,15 @@ class CalendarWeekDay
     $html[] = '<div class="text-left">';
     if ($one_part) { //1部
       $html[] = '<p class="day_part m-0 pt-1">1部</p>'; //Adminでしかみられないページ。予約している人数。
-      $html[] = '<p class="day_part m-0 pt-1">' .  . '</p>'; //ここに予約している人数を表示させる
+      $html[] = '<p class="day_part m-0 pt-1">' . $one_part->users->count() . '</p>'; //ここに予約している人数を表示させる()
     }
     if ($two_part) { //2部
       $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<p class="day_part m-0 pt-1">' . $two_part->users->count() . '</p>';
     }
     if ($three_part) { //3部
       $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<p class="day_part m-0 pt-1">' . $three_part->users->count() . '</p>';
     }
     $html[] = '</div>';
 
