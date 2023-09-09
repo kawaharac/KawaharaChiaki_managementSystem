@@ -42,7 +42,7 @@ class CalendarWeekDay
       $html[] = '<p class="day_part m-0 pt-1">' . $one_part->users->count() . '</p>'; //ここに予約している人数を表示させる()
     }
     if ($two_part) { //2部
-      $html[] = '<p class="day_part m-0 pt-1">2部</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/{id}/{data}/{part?}">2部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">' . $two_part->users->count() . '</p>';
     }
     if ($three_part) { //3部

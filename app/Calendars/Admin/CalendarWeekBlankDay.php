@@ -1,25 +1,32 @@
 <?php
+
 namespace App\Calendars\Admin;
 
-class CalendarWeekBlankDay extends CalendarWeekDay{
+class CalendarWeekBlankDay extends CalendarWeekDay
+{
 
-  function getClassName(){
+  function getClassName()
+  {
     return "day-blank";
   }
 
-  function render(){
+  function render()
+  {
     return '';
   }
 
-  function everyDay(){
+  function everyDay()
+  {
     return '';
   }
 
-  function dayPartCounts($ymd = null){
-    return '';
+  function dayPartCounts($ymd = null)
+  {
+    return ''; //返し値が空白。
   }
 
-  function dayNumberAdjustment(){
+  function dayNumberAdjustment()
+  {
     return '';
   }
 }
