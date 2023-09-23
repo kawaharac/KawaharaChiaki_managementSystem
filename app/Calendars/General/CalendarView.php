@@ -84,6 +84,13 @@ class CalendarView
     }
     $html[] = '</tbody>';
     $html[] = '</table>';
+    //モーダルの中身ココから→先にモーダルを作る！
+    $html[] = '<p>この予約をキャンセルしてもよろしいですか？</p>';
+    $html[] = '<p>予約日：</p>';
+    $html[] = '<p>時間</p>';
+    $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
+    $html[] = '<button type ="submit" class="btn p-0 w-75">閉じる</button>';
+    //モーダルの中身ココまで
     $html[] = '</div>';
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">' . csrf_field() . '</form>';
     $html[] = '<form action="/delete/calendar" method="post" id="deleteParts">' . csrf_field() . '</form>';

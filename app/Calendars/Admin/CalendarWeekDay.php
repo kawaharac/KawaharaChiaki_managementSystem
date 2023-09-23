@@ -3,6 +3,7 @@
 namespace App\Calendars\Admin;
 
 use Carbon\Carbon;
+use Auth;
 use App\Models\Calendars\ReserveSettings;
 
 class CalendarWeekDay
@@ -37,16 +38,21 @@ class CalendarWeekDay
     $three_part = ReserveSettings::with('users')->where('setting_reserve', $ymd)->where('setting_part', '3')->first();
 
     $html[] = '<div class="text-left">';
+
+    $id = Auth::id();
+    $data = ReserveSettings::with('users')->where('setting_reserve', $ymd)->first(); //ここがわからない
+
     if ($one_part) { //1部
-      $html[] = '<p class="day_part m-0 pt-1">1部</p>'; //Adminでしかみられないページ。予約している人数。
-      $html[] = '<p class="day_part m-0 pt-1">' . $one_part->users->count() . '</p>'; //ここに予約している人数を表示させる()
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/' . $id . '/' . $data . '/{part?}">1部</a></p>'; //Adminでしかみられないページ。予約している人数。
+      $html[] = '<p class="day_part m-0 pt-1">' . $one_part->users->count() . '</p>';
+      //ここに予約している人数を表示させる
     }
     if ($two_part) { //2部
       $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/{id}/{data}/{part?}">2部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">' . $two_part->users->count() . '</p>';
     }
     if ($three_part) { //3部
-      $html[] = '<p class="day_part m-0 pt-1">3部</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/{id}/{data}/{part?}">3部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">' . $three_part->users->count() . '</p>';
     }
     $html[] = '</div>';
