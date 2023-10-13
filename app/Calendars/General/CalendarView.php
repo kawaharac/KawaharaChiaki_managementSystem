@@ -66,7 +66,7 @@ class CalendarView
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '部参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">'; //隠し値で何部参加か送っている
           } else {
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+            $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           }
         } else { //51行目ココまで　下は「予約していない日」
@@ -85,11 +85,15 @@ class CalendarView
     $html[] = '</tbody>';
     $html[] = '</table>';
     //モーダルの中身ココから→先にモーダルを作る！
+    $html[] = '<div class ="modal-container">';
+    $html[] = '<div class ="modal-body">'; //白い部分を作る
     $html[] = '<p>この予約をキャンセルしてもよろしいですか？</p>';
     $html[] = '<p>予約日：</p>';
     $html[] = '<p>時間</p>';
     $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
-    $html[] = '<button type ="submit" class="btn p-0 w-75">閉じる</button>';
+    $html[] = '<button type ="submit" class="btn modal-close p-0 w-75">閉じる</button>';
+    $html[] = '</div>';
+    $html[] = '</div>';
     //モーダルの中身ココまで
     $html[] = '</div>';
     $html[] = '<form action="/reserve/calendar" method="post" id="reserveParts">' . csrf_field() . '</form>';
