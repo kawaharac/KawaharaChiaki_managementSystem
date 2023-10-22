@@ -88,8 +88,8 @@ class CalendarView
     $html[] = '<div class ="modal-container">';
     $html[] = '<div class ="modal-body">'; //白い部分を作る
     $html[] = '<p>この予約をキャンセルしてもよろしいですか？</p>';
-    $html[] = '<p>予約日：</p>';
-    $html[] = '<p>時間</p>';
+    $html[] = '<p>予約日：<span class ="modal-cancel-day"></span></p>';
+    $html[] = '<p>時間：<span class ="modal-cancel-time"></span></p>';
     $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
     $html[] = '<button type ="submit" class="btn modal-close p-0 w-75">閉じる</button>';
     $html[] = '</div>';
