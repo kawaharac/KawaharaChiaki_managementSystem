@@ -26,10 +26,15 @@ class CalendarsController extends Controller
             $getPart = $request->getPart;
             $getDate = $request->getData; //getData = getDate
             $reserveDays = array_filter(array_combine($getDate, $getPart));
-            foreach ($reserveDays as $key => $value) {
+
+            //$reserveDaysは　array_filter()を使い、第一引数に指定された配列を、第二引数でフィルタリングしている。
+
+            foreach ($reserveDays as $key => $value) { //name属性=キー
+                //複数の日付を予約できるから、何日も処理できるように繰り返し処理している（foreach処理の中のこの3行だけが予約に必要な処理）
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
-                $reserve_settings->decrement('limit_users');
-                $reserve_settings->users()->attach(Auth::id()); //Calendarの予約
+                $reserve_settings->decrement('limit_users'); //予約枠登録
+                $reserve_settings->users()->attach(Auth::id());
+                //Calendarの予約
             }
             DB::commit();
         } catch (\Exception $e) {
@@ -39,4 +44,17 @@ class CalendarsController extends Controller
     }
 
     //cancel用のメソッド追加
+    public function cancel(Request $request) //cancelが必要なデータをここの引数に入れる
+    {
+        $getPart = $request->cancelGetPart;
+        $getDate = $request->cancelGetDate;
+        //cancelしたいデータを入れる
+        //getPartに数字だけ情報を出したい　その為の変数を作る
+
+        $reserve_settings = ReserveSettings::where('setting_reserve', $getDate)->where('setting_part', $getPart)->first();
+        $reserve_settings->increment('limit_users'); //予約枠登録
+        $reserve_settings->users()->detach(Auth::id());
+        //Calendarのcancel
+        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+    }
 }

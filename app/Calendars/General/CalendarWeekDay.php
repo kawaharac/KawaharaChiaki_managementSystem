@@ -17,7 +17,10 @@ class CalendarWeekDay
 
   function getClassName()
   {
+    //Class名を取得する関数。
     return "day-" . strtolower($this->carbon->format("D"));
+    //format()関数にDを指定することで曜日を省略形式で取得。
+    //strtolower() =　中の文字列を小文字で取得
   }
 
   function pastClassName()
@@ -32,6 +35,7 @@ class CalendarWeekDay
   function render()
   {
     return '<p class="day">' . $this->carbon->format("j") . '日</p>';
+    //format()関数にjを指定することで戦闘に「0」をつけない日付が指定可能。
   }
 
   function selectPart($ymd)

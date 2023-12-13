@@ -40,7 +40,9 @@ class CalendarView
     foreach ($weeks as $week) {
       $html[] = '<tr class="' . $week->getClassName() . '">';
 
-      $days = $week->getDays(); //日付選択＝抽出getdays()1日から一か月分
+      $days = $week->getDays();
+      //日付選択＝抽出
+      //getdays()1日から一か月分
 
       foreach ($days as $day) { //1日ずつの処理
         $startDay = $this->carbon->copy()->format("Y-m-01"); //carbon日付を操作するライブラリいきなりcopyじゃだめ　挟む
@@ -64,7 +66,7 @@ class CalendarView
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { //予約していて、かつ過去の場合
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '部参加</p>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">'; //隠し値で何部参加か送っている
+            $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている
           } else {
             $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
@@ -88,9 +90,13 @@ class CalendarView
     $html[] = '<div class ="modal-container">';
     $html[] = '<div class ="modal-body">'; //白い部分を作る
     $html[] = '<p>この予約をキャンセルしてもよろしいですか？</p>';
-    $html[] = '<p>予約日：<span class ="modal-cancel-day"></span></p>';
+    $html[] = '<p>予約日：<span class ="modal-cancel-day"></span></p>'; //ここのspanの間に入った値を引数に利用する（⇒calendar.blade.phpでcancelに利用）
     $html[] = '<p>時間：<span class ="modal-cancel-time"></span></p>';
+    $html[] = '<form action ="/cancel/calendar" method="post" id="reserveParts" >' . csrf_field();
+    $html[] = '<input class="cancel-get-day" type="hidden" value="" name="cancelGetDay">';
+    $html[] = '<input class="cancel-get-part" type="hidden" value="" name ="cancelGetPart">';
     $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
+    $html[] = '</form>';
     $html[] = '<button type ="submit" class="btn modal-close p-0 w-75">閉じる</button>';
     $html[] = '</div>';
     $html[] = '</div>';
@@ -109,9 +115,10 @@ class CalendarView
     $lastDay = $this->carbon->copy()->lastOfMonth(); //その月の最終日が始まった瞬間が取得できる
     $week = new CalendarWeek($firstDay->copy()); //最初の週
     $weeks[] = $week;
-    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek(); //週７にして
+    $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek(); //週７にして 11/6月曜が格納されている
+
     while ($tmpDay->lte($lastDay)) { //月末になるまで週を繰り返す
-      $week = new CalendarWeek($tmpDay, count($weeks));
+      $week = new CalendarWeek($tmpDay, count($weeks)); //週に
       $weeks[] = $week;
       $tmpDay->addDay(7);
     }
