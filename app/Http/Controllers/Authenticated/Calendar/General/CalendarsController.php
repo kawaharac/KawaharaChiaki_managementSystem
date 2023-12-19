@@ -47,10 +47,9 @@ class CalendarsController extends Controller
     public function cancel(Request $request) //cancelが必要なデータをここの引数に入れる
     {
         $getPart = $request->cancelGetPart;
-        $getDate = $request->cancelGetDate;
+        $getDate = $request->cancelGetDay;
         //cancelしたいデータを入れる
         //getPartに数字だけ情報を出したい　その為の変数を作る
-
         $reserve_settings = ReserveSettings::where('setting_reserve', $getDate)->where('setting_part', $getPart)->first();
         $reserve_settings->increment('limit_users'); //予約枠登録
         $reserve_settings->users()->detach(Auth::id());

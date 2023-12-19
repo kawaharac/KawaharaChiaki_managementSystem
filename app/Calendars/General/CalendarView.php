@@ -66,10 +66,10 @@ class CalendarView
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { //予約していて、かつ過去の場合
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '部参加</p>';
-            $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている
+            $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている
           } else {
             $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '" form="reserveParts">';
           }
         } else { //51行目ココまで　下は「予約していない日」
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
@@ -92,7 +92,7 @@ class CalendarView
     $html[] = '<p>この予約をキャンセルしてもよろしいですか？</p>';
     $html[] = '<p>予約日：<span class ="modal-cancel-day"></span></p>'; //ここのspanの間に入った値を引数に利用する（⇒calendar.blade.phpでcancelに利用）
     $html[] = '<p>時間：<span class ="modal-cancel-time"></span></p>';
-    $html[] = '<form action ="/cancel/calendar" method="post" id="reserveParts" >' . csrf_field();
+    $html[] = '<form action ="/cancel/calendar" method="post" id="deleteParts" >' . csrf_field();
     $html[] = '<input class="cancel-get-day" type="hidden" value="" name="cancelGetDay">';
     $html[] = '<input class="cancel-get-part" type="hidden" value="" name ="cancelGetPart">';
     $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
