@@ -69,7 +69,7 @@ class CalendarView
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている
           } else {
             $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
-            $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '" form="reserveParts">';
+            $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $day->authReserveDate($day->everyDay())->first()->setting_part . '" form="reserveParts">';
           }
         } else { //51行目ココまで　下は「予約していない日」
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
