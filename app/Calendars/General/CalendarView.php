@@ -66,7 +66,8 @@ class CalendarView
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { //予約していて、かつ過去の場合
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '部参加</p>';
-            $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている
+            $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている　form　Web.phpのnameになっている
+            //ここが悪さしているのかな？
           } else {
             $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
             $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $day->authReserveDate($day->everyDay())->first()->setting_part . '" form="reserveParts">';
