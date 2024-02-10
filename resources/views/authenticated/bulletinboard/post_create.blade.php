@@ -8,7 +8,7 @@
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}"></optgroup>
-        <!-- サブカテゴリー表示 -->
+        <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
         </optgroup>
         @endforeach
       </select>
@@ -47,10 +47,17 @@
       <!-- サブカテゴリー追加(修正：mainからsubに)  -->
       <div class="">
         <p class="m-0">サブカテゴリー</p>
+        <select name="main_category_name">
+          <!-- メインカテゴリーの数だけ表示を増やす -->
+          @foreach($main_categories as $main_category)
+          <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>
+          @endforeach
+        </select>
         <input type="text" class="w-100" name="sub_category_name" form="subCategoryRequest">
         <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="subCategoryRequest">
       </div>
       <form action="{{ route('sub.category.create') }}" method="post" id="subCategoryRequest">{{ csrf_field() }}</form>
+      <!-- 右ペイン：サブカテゴリー追加項目 -->
     </div>
   </div>
   @endcan

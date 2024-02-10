@@ -86,9 +86,20 @@ class PostsController extends Controller
         Post::findOrFail($id)->delete();
         return redirect()->route('post.show');
     }
+    //メインカテゴリー作成
     public function mainCategoryCreate(Request $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
+        return redirect()->route('post.input');
+    }
+    //サブカテゴリー作成
+    public function subCategoryCreate(Request $request)
+    {
+        dd($request);
+        Sub_categories::create([
+            'main_cateqory_id' => $request->main_category_name,
+            'sub_cateqory' => $request->sub_category_name
+        ]);
         return redirect()->route('post.input');
     }
     //コメントを作る
