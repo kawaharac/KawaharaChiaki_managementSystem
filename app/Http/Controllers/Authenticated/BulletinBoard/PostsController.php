@@ -63,12 +63,13 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request)
-    {
+    { //Postmodelではサブカテゴリーを追加しない
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+        $hoge = Post::FindOrFail($post->id)->subCategories()->attach($request->sub_category_id);
         return redirect()->route('post.show');
     }
     //投稿を編集する

@@ -15,25 +15,30 @@ class Post extends Model
         'post',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\Users\User');
     }
 
-    public function postComments(){
+    public function postComments()
+    {
         return $this->hasMany('App\Models\Posts\PostComment');
         //post_commentsテーブルをリレーションで使用可能にしている
     }
 
-    public function subCategories(){
+    public function subCategories()
+    {
+        return $this->BelongsToMany('App\Models\Categories\SubCategory', 'post_sub_categories', 'post_id', 'sub_category_id');
         // リレーションの定義
     }
 
     // コメント数
-    public function commentCounts($post_id){
+    public function commentCounts($post_id)
+    {
         return Post::with('postComments')->find($post_id)->postComments();
     }
-        //返し値＝PostモデルのpostCommentsメソッド内の変数$post_id（投稿した人のID）。
-        //postCommentsメソッドで一対多の紐付け。
+    //返し値＝PostモデルのpostCommentsメソッド内の変数$post_id（投稿した人のID）。
+    //postCommentsメソッドで一対多の紐付け。
 
 
 }

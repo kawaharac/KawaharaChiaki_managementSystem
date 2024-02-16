@@ -4,13 +4,14 @@
 <div class="post_create_container d-flex">
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
+      <!-- 対応中240216：formタグで囲む必要はない。ただサブカテゴリーのidを値で持ってくればよいので14行目のようにする。 -->
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
         <optgroup label="{{ $main_category->main_category }}">
           @foreach($main_category -> subCategories as $sub_category )
           <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
-          <option label="{{ $sub_category->sub_category }}"></option>
+          <option label="{{ $sub_category->sub_category }}" value="{{ $sub_category->id }}"></option>
           @endforeach
         </optgroup>
         @endforeach
