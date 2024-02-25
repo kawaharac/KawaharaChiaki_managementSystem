@@ -11,6 +11,8 @@ use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
 use App\Models\Users\User;
 use App\Http\Requests\BulletinBoard\PostFormRequest;
+use App\Http\Requests\MainCategoryRequest;
+use App\Http\Requests\SubCategoryRequest;
 use App\Http\Requests\CommentCreateRequest;
 use Auth;
 
@@ -63,13 +65,13 @@ class PostsController extends Controller
     }
 
     public function postCreate(PostFormRequest $request)
-    { //Postmodelではサブカテゴリーを追加しない
+    { //Postmodelではサブカテゴリーを追加しない?
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
-        $hoge = Post::FindOrFail($post->id)->subCategories()->attach($request->sub_category_id);
+        $hoge = Post::findOrFail($post->id)->subCategories()->attach($request->post_category_id); //post_create.blade.phpのnameがpost_category_id。
         return redirect()->route('post.show');
     }
     //投稿を編集する
@@ -88,13 +90,13 @@ class PostsController extends Controller
         return redirect()->route('post.show');
     }
     //メインカテゴリー作成
-    public function mainCategoryCreate(Request $request)
+    public function mainCategoryCreate(MainCategoryRequest $request)
     {
         MainCategory::create(['main_category' => $request->main_category_name]);
         return redirect()->route('post.input');
     }
     //サブカテゴリー作成
-    public function subCategoryCreate(Request $request)
+    public function subCategoryCreate(SubCategoryRequest $request)
     {
         SubCategory::create([
             'main_category_id' => $request->main_category_name,

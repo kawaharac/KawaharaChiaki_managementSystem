@@ -17,7 +17,7 @@ class TestPostRequest extends FormRequest
         return true;
     }
 
-        /**
+    /**
      *  rules()の前に実行される
      *       $this->merge(['key' => $value])を実行すると、
      *       フォームで送信された(key, value)の他に任意の(key, value)の組み合わせをrules()に渡せる
@@ -28,12 +28,13 @@ class TestPostRequest extends FormRequest
      * @return array
      */
 
-    public function getValidatorInstance() {
+    public function getValidatorInstance()
+    {
         //生年月日をまとめて値に直す
         $old_year = $this->input('old_year');
         $old_month = $this->input('old_month');
         $old_day = $this->input('old_day');
-        $datetime = $old_year .'-'. $old_month .'-'. $old_day;
+        $datetime = $old_year . '-' . $old_month . '-' . $old_day;
         // 日付を作成(ex. 2020-1-20)
         //$datetime_validation = implode('-', $datetime);
 
@@ -66,10 +67,10 @@ class TestPostRequest extends FormRequest
             'password_confirmation' => 'required|min:8|max:30'
             //確認用パスワードは必ずパスワード名の後ろに”_confirmation”とつける
         ];
-
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
             "required" => "必須項目です",
             "email" => "メールアドレスの形式で入力してください",

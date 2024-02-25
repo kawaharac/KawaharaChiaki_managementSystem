@@ -55,10 +55,10 @@ class RegisterController extends Controller
     }
 
     public function registerPost(TestPostRequest $request)
-    //Controllerの引数にformリクエストをあてる(useしているのでフルパスは略す)
+    //Controllerの引数にフォームリクエストをあてる(useしているのでフルパスは略す)
     {
         DB::beginTransaction();
-        try{
+        try {
             $old_year = $request->old_year;
             $old_month = $request->old_month;
             $old_day = $request->old_day;
@@ -84,7 +84,7 @@ class RegisterController extends Controller
             //83：リレーション定義のメソッド　attachで中間定義する
             DB::commit();
             return view('auth.login.login');
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->route('loginView');
         }
