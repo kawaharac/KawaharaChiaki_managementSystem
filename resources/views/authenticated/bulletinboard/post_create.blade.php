@@ -43,6 +43,7 @@
       <!-- カテゴリー選択#773 -->
       <div class="">
         <p class="m-0">メインカテゴリー</p>
+        @if($errors->has('main_category_name')) <span class="text-danger">{{ $errors->first('main_category_name') }}</span> @endif
         <form action="{{ route('main.category.create')}}" method="post" id="mainCategoryRequest">{{ csrf_field() }}
           <input type=" text" class="w-100" name="main_category_name" form="mainCategoryRequest">
           <input type="submit" value="追加" class="w-100 btn btn-primary p-0" form="mainCategoryRequest">
@@ -52,6 +53,7 @@
         <!-- サブカテゴリー追加(修正：mainからsubに)  -->
         <div class="">
           <p class="m-0">サブカテゴリー</p>
+          @if($errors->has('sub_category_name')) <span class="text-danger">{{ $errors->first('sub_category_name') }}</span> @endif
           <select name="main_category_name">
             <!-- メインカテゴリーの数だけ表示を増やす -->
             @foreach($main_categories as $main_category)

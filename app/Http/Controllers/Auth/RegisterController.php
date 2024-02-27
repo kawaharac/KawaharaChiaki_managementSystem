@@ -65,7 +65,7 @@ class RegisterController extends Controller
             $data = $old_year . '-' . $old_month . '-' . $old_day;
             //$data= 日付をまとめたもの
             $birth_day = date('Y-m-d', strtotime($data));
-            //strtotime タイムスタンプ操作　date第一引数＝整える形、第二引数＝持ち出す値
+            //strtotime タイムスタンプ操作　date() 第一引数＝整える形、第二引数＝持ち出す値
             $subjects = $request->subject;
 
             $user_get = User::create([
@@ -79,7 +79,7 @@ class RegisterController extends Controller
                 'role' => $request->role,
                 'password' => bcrypt($request->password)
             ]);
-            $user = User::findOrFail($user_get->id);
+            $user = User::findOrFail($user_get->id); //findOrFail=見つからなかったら404
             $user->subjects()->attach($subjects);
             //83：リレーション定義のメソッド　attachで中間定義する
             DB::commit();

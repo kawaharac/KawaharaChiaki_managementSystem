@@ -30,4 +30,14 @@ class MainCategoryRequest extends FormRequest
             'main_category_name' => 'required|string|max:100|unique:main_categories,main_category' //bladeから送られてくる値（name）とカラム名（main_category）が一致していれば、カンマでカラム名を書く必要はない
         ]; //バリデーションは出来たのでエラーメッセージ表示、日本語で表示できるようにする。
     }
+
+    public function messages()
+    {
+        return [
+            "required" => "必須項目です",
+            "string" => "文字で入力してください",
+            "max" => "100文字以内で入力してください",
+            "unique" => "同じものは登録できません"
+        ];
+    }
 }
