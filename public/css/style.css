@@ -256,6 +256,15 @@ li {
   color: #FFF;
 }
 
+.sub_category_btn {
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 0 5px;
+  border: none;
+  background: #999;
+  color: #FFF;
+}
+
 .main_categories span,
 .sub_categories li input {
   list-style: none;

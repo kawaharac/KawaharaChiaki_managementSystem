@@ -12,7 +12,14 @@
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p><!-- ここの〇〇（ユーザー名）さんエラーが出るので消す-->
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
-        <div class="d-flex post_status">
+        <div class="d-flex post_status"><!-- サブカテゴリーをいいねとコメントと並列で表示させる -->
+          @foreach($categories as $main_category)
+          @foreach($main_category -> subCategories as $sub_category)
+          <div class=""><!-- コメント用のエリア・四角で囲むcategoriesからforeachすればいいのかな？ -->
+            <div class="sub_category_btn"><span>{{ $sub_category->sub_category }}</span></div><!-- 文字を四角で囲む -->
+          </div>
+          @endforeach
+          @endforeach
           <div class="mr-5">
             <!--機能追加（掲示板） #772コメントの数を表示 -->
             <!-- 3/11 コメントのカウント数を入れた＞#771同様UsersControllerへis_Comment -->
