@@ -47,8 +47,9 @@ class PostsController extends Controller
         } else if ($request->my_posts) {
             $posts = Post::with('user', 'postComments')
                 ->where('user_id', Auth::id())->get();
+            $sub_categories= Sub_categories::
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment', 'sub_categories'));
         //compactでここに表記した複数の変数を紐付け。（bladeで変数宣言せずいきなり使うことができる）
     }
 

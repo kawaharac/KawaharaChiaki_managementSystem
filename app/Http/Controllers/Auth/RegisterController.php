@@ -81,7 +81,7 @@ class RegisterController extends Controller
             ]);
             $user = User::findOrFail($user_get->id); //findOrFail=見つからなかったら404
             $user->subjects()->attach($subjects);
-            //83：リレーション定義のメソッド　attachで中間定義する
+            //リレーション定義のメソッド　attachで中間定義する
             DB::commit();
             return view('auth.login.login');
         } catch (\Exception $e) {
