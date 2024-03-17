@@ -4,17 +4,22 @@
 
 @section('content')
 <div class="board_area w-100 border m-auto d-flex">
-  <post_statusdiv class="post_view w-75 mt-5">
+  <post_status div class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <!-- PostsControllerよりshowメソッドの中の返し値「posts」を変数$postとして使用できるようにしている -->
+    <!--  -->
     <div class="post_area border w-75 m-auto p-3">
-      <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p><!-- ここの〇〇（ユーザー名）さんエラーが出るので消す-->
+      <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
         <div class="d-flex post_status"><!-- サブカテゴリーをいいねとコメントと並列で表示させる -->
           <div class=""><!-- コメント用のエリア・四角で囲むcategoriesからforeachすればいいのかな？ -->
-            <div class="sub_category_btn"><span>{{ $post->sub_category->sub_category }}</span></div><!-- 文字を四角で囲む -->
+            <div class="sub_category_btn">
+              @foreach($post->subCategories as $sub_category)
+              <span>{{ $sub_category->sub_category }}</span>
+              @endforeach
+            </div><!-- 文字を四角で囲む -->
           </div>
           <div class="mr-5">
             <!--機能追加（掲示板） #772コメントの数を表示 -->
@@ -40,23 +45,23 @@
       </div>
     </div>
     @endforeach
-  </post_statusdiv>
-  <div class="other_area border w-25">
-    <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
+    </post_statusdiv>
+    <div class="other_area border w-25">
+      <div class="border m-4">
+        <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
+        <div class="">
+          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
+          <input type="submit" value="検索" form="postSearchRequest">
+        </div>
+        <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
+        <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+        <ul>
+          @foreach($categories as $category)
+          <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+          @endforeach
+        </ul>
       </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-        @endforeach
-      </ul>
     </div>
-  </div>
-  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
+    <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form><!-- postControllerのshowに行く -->
 </div>
 @endsection

@@ -23,7 +23,7 @@ class PostsController extends Controller
     {
         //Request>PostFormRequestに変更23/2/25
         //web.phpで紐付けしているblade=posts/{keyword?}(※キーワードがない場合、URLは/posts以下はない事に留意)
-        $posts = Post::with('user', 'postComments')->get(); //withで他のテーブルの情報を持ってくる　リレーションでできている
+        $posts = Post::with('user', 'postComments', 'subCategories')->get(); //withで他のテーブルの情報を持ってくる　リレーションでできている model内のメソッド名を追加
         //Postを全部ＧＥＴしている
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
@@ -32,24 +32,24 @@ class PostsController extends Controller
         $post_comment = new Post;
         if (!empty($request->keyword)) {
             //もしリクエストからキーワードがあれば、下の処理を行う。❶withメソッド＝Posts.phpよりリレーションの記述
-            $posts = Post::with('user', 'postComments')
+            $posts = Post::with('user', 'postComments', 'subCategories')
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
-                ->orWhere('post', 'like', '%' . $request->keyword . '%')->get();
+                ->orWhere('post', 'like', '%' . $request->keyword . '%')
+                ->orWhere('post->sub_category', '=', $request->keyword)->get();
         } else if ($request->category_word) {
             //そうでない、かつ変数category_word(posts.blade内で$category)
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments')->get();
+            $posts = Post::with('user', 'postComments', 'subCategories')->get();
         } else if ($request->like_posts) {
             $likes = Auth::user()->likePostId()->get('like_post_id');
             //変数$likesは認証ユーザのlikePostId()（User.php内のメソッド：いいねした人のIDを割り出す）からいいねした人のIDを複数抜き出す。
-            $posts = Post::with('user', 'postComments')
+            $posts = Post::with('user', 'postComments', 'subCategories')
                 ->whereIn('id', $likes)->get();
         } else if ($request->my_posts) {
-            $posts = Post::with('user', 'postComments')
+            $posts = Post::with('user', 'postComments', 'subCategories')
                 ->where('user_id', Auth::id())->get();
-            $sub_categories= Sub_categories::
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment', 'sub_categories'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
         //compactでここに表記した複数の変数を紐付け。（bladeで変数宣言せずいきなり使うことができる）
     }
 
