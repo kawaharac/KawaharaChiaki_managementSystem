@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="board_area w-100 border m-auto d-flex">
-  <post_status div class="post_view w-75 mt-5">
+  <post_statusdiv class="post_view w-75 mt-5">
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <!-- PostsControllerよりshowメソッドの中の返し値「posts」を変数$postとして使用できるようにしている -->
@@ -45,23 +45,29 @@
       </div>
     </div>
     @endforeach
-    </post_statusdiv>
-    <div class="other_area border w-25">
-      <div class="border m-4">
-        <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-        <div class="">
-          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-          <input type="submit" value="検索" form="postSearchRequest">
-        </div>
-        <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-        <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+  </post_statusdiv>
+  <div class="other_area border w-25">
+    <div class="border m-4">
+      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
+      <div class="">
+        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
+        <input type="submit" value="検索" form="postSearchRequest">
+      </div>
+      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
+      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+      <ul>
+        @foreach($categories as $category)
+        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
         <ul>
-          @foreach($categories as $category)
-          <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+          @foreach($subcategories as $subcategory)
+          <li class="sub_categories" category_id="{{ $subcategory->id }}"><span>{{ $subcategory->sub_category }}<span>
+          </li>
           @endforeach
         </ul>
-      </div>
+        @endforeach
+      </ul>
     </div>
-    <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form><!-- postControllerのshowに行く -->
+  </div>
+  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form><!-- postControllerのshowに行く -->
 </div>
 @endsection

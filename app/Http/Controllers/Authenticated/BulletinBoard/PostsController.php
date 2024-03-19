@@ -27,6 +27,7 @@ class PostsController extends Controller
         //Postを全部ＧＥＴしている
         $categories = MainCategory::get();
         //変数$categoriesはDB（MainCategory)からすべてゲットする。
+        $subcategories = SubCategory::get();
         $like = new Like;
         //変数＄likeをインスタンス化。
         $post_comment = new Post;
@@ -49,7 +50,7 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments', 'subCategories')
                 ->where('user_id', Auth::id())->get();
         }
-        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment'));
+        return view('authenticated.bulletinboard.posts', compact('posts', 'categories', 'like', 'post_comment', 'subcategories'));
         //compactでここに表記した複数の変数を紐付け。（bladeで変数宣言せずいきなり使うことができる）
     }
 
