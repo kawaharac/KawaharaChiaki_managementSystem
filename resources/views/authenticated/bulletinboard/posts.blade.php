@@ -59,9 +59,10 @@
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
         <ul>
-          @foreach($subcategories as $subcategory)
-          <li class="sub_categories" category_id="{{ $subcategory->id }}"><span>{{ $subcategory->sub_category }}<span>
-          </li>
+          @foreach($category -> subCategories as $sub_category )
+          <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
+          <input type="submit" name="category_word" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+          <!-- sub_categoryを$Requestにして表示する。postControllerの42行目を発火させるように -->
           @endforeach
         </ul>
         @endforeach

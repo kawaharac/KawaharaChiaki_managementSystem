@@ -36,11 +36,15 @@ class PostsController extends Controller
             $posts = Post::with('user', 'postComments', 'subCategories')
                 ->where('post_title', 'like', '%' . $request->keyword . '%')
                 ->orWhere('post', 'like', '%' . $request->keyword . '%')
-                ->orWhere('post->sub_category', '=', $request->keyword)->get();
+                ->orWhereHas('subCategories', function ($query) use ($request) {
+                    $query->where('sub_category', '=', $request->keyword);
+                })->get();
         } else if ($request->category_word) {
             //そうでない、かつ変数category_word(posts.blade内で$category)
             $sub_category = $request->category_word;
-            $posts = Post::with('user', 'postComments', 'subCategories')->get();
+            $posts = Post::with('user', 'postComments', 'subCategories')->WhereHas('subCategories', function ($query) use ($request) {
+                $query->where('sub_category', '=', $request->category_word);
+            })->get();
         } else if ($request->like_posts) {
             $likes = Auth::user()->likePostId()->get('like_post_id');
             //変数$likesは認証ユーザのlikePostId()（User.php内のメソッド：いいねした人のIDを割り出す）からいいねした人のIDを複数抜き出す。
