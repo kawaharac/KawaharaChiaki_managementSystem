@@ -7,9 +7,11 @@
     <div class="h-75 border">
       <table class="">
         <tr class="text-center">
-          @foreach($reservePersons-> users as $user)
+          @foreach($reservePersons as $reservePerson)
+          @foreach($reservePerson-> users as $user)
           <th class="w-25">ID{{ $user->id }}</th>
           <th class="w-25">名前{{ $user->over_name }}{{ $user->under_name }}</th>
+          @endforeach
           @endforeach
         </tr>
         <tr class="text-center">
