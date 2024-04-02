@@ -22,7 +22,7 @@ class ReserveSettings extends Model
         //第2引数：リレーション先のテーブル名(中間テーブル名)
         //第3引数：中間テーブルの自モデルの主キー
         //第4引数：中間テーブルの相手モデルの主キー
-        return $this->belongsToMany('App\Models\Users\User', 'reserve_setting_users', 'reserve_setting_id', 'user_id')->withPivot('id');
+        return $this->belongsToMany('App\Models\Users\User', 'reserve_setting_users', 'reserve_setting_id', 'user_id')->withPivot('id', 'reserve_setting_id');
         //withPivot(中間テーブルの利用したいカラムを引数に入れる。）
         //※デフォルトでpivotからアクセスできる値は繋げる元のモデルキー（order_idやproduct_id）のみのため、
         //それ以外はこれでメソッドチェーンする。)

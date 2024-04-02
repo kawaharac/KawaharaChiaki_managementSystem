@@ -20,7 +20,7 @@ class CalendarsController extends Controller
         return view('authenticated.calendar.admin.calendar', compact('calendar')); //compact関数で変数名とその値から配列を生成する。viewの変数とControllerで定義した変数名が同じ時にスマートに描くことが出来る。
     }
 
-    public function reserveDetail($date, $part, $user_id = 0)
+    public function reserveDetail($user_id = 0, $date = 0, $part = 0)
     {
         $reservePersons = ReserveSettings::with('users')->where('setting_reserve', $date)->where('setting_part', $part)->get();
         return view('authenticated.calendar.admin.reserve_detail', compact('reservePersons', 'date', 'part'));
