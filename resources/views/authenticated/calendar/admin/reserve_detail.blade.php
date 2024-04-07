@@ -5,15 +5,22 @@
   <div class="w-50 m-auto h-75">
     <p><span>{{ $date }}日</span><span class="ml-3">{{ $part }}部</span></p>
     <div class="h-75 border">
-      <table class="">
+      <table class="reserve_detail">
         <tr class="text-center">
-          @foreach($reservePersons as $reservePerson)
-          @foreach($reservePerson-> users as $user)
-          <th class="w-25">ID{{ $user->id }}</th>
-          <th class="w-25">名前{{ $user->over_name }}{{ $user->under_name }}</th>
-          @endforeach
-          @endforeach
+          <th>ID</th>
+          <th>名前</th>
+          <th>場所</th>
         </tr>
+
+        @foreach($reservePersons as $reservePerson)
+        @foreach($reservePerson-> users as $user)
+        <tr class="text-center">
+          <td class="w-25">{{ $user->id }}</td>
+          <td class="w-25">{{ $user->over_name }}{{ $user->under_name }}</td>
+          <td class="w-25">リモート</td>
+        </tr>
+        @endforeach
+        @endforeach
         <tr class="text-center">
           <td class="w-25"></td>
           <td class="w-25"></td>

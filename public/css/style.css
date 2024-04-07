@@ -64,6 +64,14 @@ li {
   font-size: 12px;
 }
 
+.text_day_part {
+  display: flex;
+}
+
+.day_part_count {
+  margin-right: 20px;
+}
+
 .adjust-table {
   width: 70% !important;
 }

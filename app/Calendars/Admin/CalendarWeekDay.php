@@ -40,20 +40,26 @@ class CalendarWeekDay
     $html[] = '<div class="text-left">';
 
     $id = Auth::id();
-    $data = ReserveSettings::with('users')->where('setting_reserve', $ymd)->first(); //ここがわからない
+    $data = ReserveSettings::with('users')->where('setting_reserve', $ymd)->first();
 
     if ($one_part) { //1部
-      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/' . $id . '/' . $data->setting_reserve . '/1">1部</a></p>'; //Adminでしかみられないページ。予約している人数。
+      $html[] = '<div class="text_day_part">';
+      $html[] = '<p class="day_part m-0 pt-1"><a class = "day_part_count" href="/calendar/' . $id . '/' . $data->setting_reserve . '/1">1部</a></p>'; //Adminでしかみられないページ。予約している人数。
       $html[] = '<p class="day_part m-0 pt-1">' . $one_part->users->count() . '</p>';
       //ここに予約している人数を表示させる
+      $html[] = '</div>';
     }
     if ($two_part) { //2部
-      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/' . $id . '/' . $data->setting_reserve . '/2">2部</a></p>'; //文字化けしないよう修正する
+      $html[] = '<div class="text_day_part">';
+      $html[] = '<p class="day_part m-0 pt-1"><a class = "day_part_count" href="/calendar/' . $id . '/' . $data->setting_reserve . '/2">2部</a></p>'; //文字化けしないよう修正する
       $html[] = '<p class="day_part m-0 pt-1">' . $two_part->users->count() . '</p>';
+      $html[] = '</div>';
     }
     if ($three_part) { //3部
-      $html[] = '<p class="day_part m-0 pt-1"><a href="/calendar/' . $id . '/' . $data->setting_reserve . '/3">3部</a></p>';
+      $html[] = '<div class="text_day_part">';
+      $html[] = '<p class="day_part m-0 pt-1"><a  class = "day_part_count" href="/calendar/' . $id . '/' . $data->setting_reserve . '/3">3部</a></p>';
       $html[] = '<p class="day_part m-0 pt-1">' . $three_part->users->count() . '</p>';
+      $html[] = '</div>';
     }
     $html[] = '</div>';
 
