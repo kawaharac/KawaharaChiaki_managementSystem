@@ -8,10 +8,10 @@
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
-        <optgroup label="{{ $main_category->main_category }}">
+        <optgroup label="{{ $main_category->main_category }}" class="category_color">
           @foreach($main_category -> subCategories as $sub_category )
           <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
-          <option label="{{ $sub_category->sub_category }}" value="{{ $sub_category->id }}"></option>
+          <option label="{{ $sub_category->sub_category }}" value="{{ $sub_category->id }}" class="sub_category_color"></option>
           @endforeach
         </optgroup>
         @endforeach
@@ -54,7 +54,7 @@
         <div class="">
           <p class="m-0">サブカテゴリー</p>
           @if($errors->has('sub_category_name')) <span class="text-danger">{{ $errors->first('sub_category_name') }}</span> @endif
-          <select name="main_category_name">
+          <select class="main_category_name" name="main_category_name">
             <!-- メインカテゴリーの数だけ表示を増やす -->
             @foreach($main_categories as $main_category)
             <option value="{{ $main_category->id }}">{{ $main_category->main_category }}</option>

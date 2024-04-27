@@ -32,7 +32,6 @@ class CalendarsController extends Controller
             foreach ($reserveDays as $key => $value) { //name属性=キー
                 //複数の日付を予約できるから、何日も処理できるように繰り返し処理している（foreach処理の中のこの3行だけが予約に必要な処理）
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first(); //getDateを特定した後getPartを特定
-                //dd($reserve_settings); nullになる
                 $reserve_settings->decrement('limit_users'); //予約枠登録上限人数を1人削減
                 $reserve_settings->users()->attach(Auth::id());
                 //Calendarの予約。usersテーブルからattach()でログイン中のユーザーのIDを取得する

@@ -97,6 +97,14 @@ li {
   border-radius: 10px;
 }
 
+.btn-cancel {
+  width: 100%;
+}
+
+.btn-input-cancel {
+  display: flex;
+}
+
 .active {
   display: block;
   /*モーダル本体の指定 + モーダル外側の背景の指定*/
@@ -241,7 +249,21 @@ li {
   font-size: 12px;
 }
 
+.post_status {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.comment_icon_area {
+  display: flex;
+}
+
 /* 掲示板　カテゴリー */
+.main_category_name {
+  width: 100%;
+}
+
 .category_area {
   background: #FFF;
   border-radius: 10px;
@@ -265,6 +287,7 @@ li {
 }
 
 .sub_category_btn {
+  display: inline-block;
   font-size: 12px;
   border-radius: 5px;
   padding: 0 5px;
@@ -290,6 +313,15 @@ li {
   padding: 10px;
   background: #FFF;
   border-radius: 5px;
+}
+
+.category_color {
+  background-color: #EBEBEB;
+  color: #B0B0B0;
+}
+
+.sub_category_color {
+  color: black;
 }
 
 .reserve_users_area span {
@@ -318,4 +350,8 @@ li {
 
 .subject_inner {
   display: none;
+}
+
+.subject_search {
+  padding: 0 5px;
 }

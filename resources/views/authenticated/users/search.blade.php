@@ -46,15 +46,15 @@
       <div>
         @if($user->role == 4)<!-- 一覧画面で選択科目の表示 -->
         <span>選択科目 :</span>
-          @foreach($subjects as $subject)
-            @if($subject->id == 1)
-            <span>国語</span>
-            @elseif($subject->id == 2)
-            <span>数学</span>
-            @else
-            <span>英語</span>
-            @endif
-          @endforeach
+        @foreach($subjects as $subject)
+        @if($subject->id == 1)
+        <span>国語</span>
+        @elseif($subject->id == 2)
+        <span>数学</span>
+        @else
+        <span>英語</span>
+        @endif
+        @endforeach
         @endif
       </div>
     </div>
@@ -102,9 +102,8 @@
           <div class="selected_engineer">
             <label>選択科目</label><!-- 選択科目の中身を読み込みする -->
             @foreach($subjects as $subject)
-            <div class="">
-              <input type="checkbox" name="subject[]" value="{{ $subject->id }}" form="userSearchRequest">
-              <label>{{ $subject->subject }}</label>
+            <div>
+              <label class="subject_search">{{ $subject->subject }}</label><input type="checkbox" name="subject[]" value="{{ $subject->id }}" form="userSearchRequest">
             </div>
             @endforeach
             <!-- 検索条件欄に選択科目の表示を追加 -->

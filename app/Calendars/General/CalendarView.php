@@ -58,18 +58,18 @@ class CalendarView
         if (in_array($day->everyDay(), $day->authReserveDay())) { //if文の中に","は内包している　authReserveDay()＝予約している日
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part; //予約部の定義　1部か2部か3部か
           if ($reservePart == 1) {
-            $reservePart = "リモ1部";
+            $reservePart = "1";
           } else if ($reservePart == 2) {
-            $reservePart = "リモ2部";
+            $reservePart = "2";
           } else if ($reservePart == 3) {
-            $reservePart = "リモ3部";
+            $reservePart = "3"; //ここか？
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) { //予約していて、かつ過去の場合
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '部参加</p>';
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">リモ' . $reservePart . '部参加</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">'; //隠し値で何部参加か送っている　form　Web.phpのnameになっている
             //ここが悪さしているのかな？
           } else {
-            $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+            $html[] = '<button type="submit" class="btn btn-modal-open btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">リモ' . $reservePart . '部</button>';
             $html[] = '<input type="hidden" class="getPart" name="getPart[]" value="' . $day->authReserveDate($day->everyDay())->first()->setting_part . '" form="reserveParts">';
           }
         } else { //51行目ココまで　下は「予約していない日」
@@ -96,9 +96,11 @@ class CalendarView
     $html[] = '<form action ="/cancel/calendar" method="post" id="deleteParts" >' . csrf_field();
     $html[] = '<input class="cancel-get-day" type="hidden" value="" name="cancelGetDay">';
     $html[] = '<input class="cancel-get-part" type="hidden" value="" name ="cancelGetPart">';
-    $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75">キャンセル</button>';
+    $html[] = '<div class="btn-cancel">';
+    $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75 btn-input-cancel">キャンセル</button>';
     $html[] = '</form>';
-    $html[] = '<button type ="submit" class="btn modal-close p-0 w-75">閉じる</button>';
+    $html[] = '<button type ="submit" class="btn modal-close p-0 w-75 btn-primary btn-input-cancel">閉じる</button>';
+    $html[] = '</div>';
     $html[] = '</div>';
     $html[] = '</div>';
     //モーダルの中身ココまで

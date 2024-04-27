@@ -15,7 +15,13 @@
             <!-- 投稿の編集/削除時に確認メッセージを追加 -->
           </div>
         </div>
-
+        <div class="sub_category_area"><!-- コメント用のエリア・四角で囲むcategoriesからforeachすればいいのかな？ -->
+          <div class="sub_category_btn">
+            @foreach($post->subCategories as $sub_category)
+            <span>{{ $sub_category->sub_category }}</span>
+            @endforeach
+          </div><!-- 文字を四角で囲む -->
+        </div>
         <div class="contributor d-flex">
           <p>
             <span>{{ $post->user->over_name }}</span>
@@ -26,14 +32,14 @@
         </div>
         <div class="detsail_post_title">{{ $post->post_title }}</div>
         <!-- バリデーション -->
-         @if($errors->first('post_title'))
-      <span class="error_message">{{ $errors->first('post_title') }}</span>
-      <!-- エラーが合ったらここにバリデーション表示 -->
-      @endif
-         @if($errors->first('post_body'))
-      <span class="error_message">{{ $errors->first('post_body') }}</span>
-      <!-- エラーが合ったらここにバリデーション表示 -->
-      @endif
+        @if($errors->first('post_title'))
+        <span class="error_message">{{ $errors->first('post_title') }}</span>
+        <!-- エラーが合ったらここにバリデーション表示 -->
+        @endif
+        @if($errors->first('post_body'))
+        <span class="error_message">{{ $errors->first('post_body') }}</span>
+        <!-- エラーが合ったらここにバリデーション表示 -->
+        @endif
         <div class="mt-3 detsail_post">{{ $post->post }}</div>
       </div>
       <div class="p-3">
