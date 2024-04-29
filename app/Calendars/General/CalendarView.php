@@ -97,9 +97,9 @@ class CalendarView
     $html[] = '<input class="cancel-get-day" type="hidden" value="" name="cancelGetDay">';
     $html[] = '<input class="cancel-get-part" type="hidden" value="" name ="cancelGetPart">';
     $html[] = '<div class="btn-cancel">';
-    $html[] = '<button type ="submit" class="btn btn-danger p-0 w-75 btn-input-cancel">キャンセル</button>';
+    $html[] = '<button type ="submit" class="btn btn-danger p-0 btn-input-cancel">キャンセル</button>';
     $html[] = '</form>';
-    $html[] = '<button type ="submit" class="btn modal-close p-0 w-75 btn-primary btn-input-cancel">閉じる</button>';
+    $html[] = '<button type ="submit" class="btn modal-close p-0 btn-primary btn-input-cancel">閉じる</button>';
     $html[] = '</div>';
     $html[] = '</div>';
     $html[] = '</div>';

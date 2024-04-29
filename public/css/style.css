@@ -99,10 +99,14 @@ li {
 
 .btn-cancel {
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }
 
 .btn-input-cancel {
   display: flex;
+  padding: 10px;
 }
 
 .active {
