@@ -5,13 +5,12 @@
 @section('content')
 <div class="board_area w-100 border m-auto d-flex">
   <post_statusdiv class="post_view w-75 mt-5">
-    <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <!-- PostsControllerよりshowメソッドの中の返し値「posts」を変数$postとして使用できるようにしている -->
     <!--  -->
     <div class="post_area border w-75 m-auto p-3">
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
-      <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
+      <p><a class="post_title" href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area">
         <div class="d-flex post_status"><!-- サブカテゴリーをいいねとコメントと並列で表示させる -->
           <div class="sub_category_area"><!-- コメント用のエリア・四角で囲むcategoriesからforeachすればいいのかな？ -->

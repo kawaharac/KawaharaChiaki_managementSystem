@@ -36,6 +36,14 @@ li {
 .user_status {
   border-radius: 10px;
   background: #FFF;
+  margin: auto;
+  width: 80%;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .2);
+}
+
+.my_profile {
+  margin-bottom: 3rem;
+  text-align: start;
 }
 
 /* スクール予約関連 */
@@ -204,6 +212,11 @@ li {
 
 .detsail_post_title {
   font-size: 14px;
+}
+
+.post_title {
+  color: #000000;
+  font-weight: bold;
 }
 
 .detsail_post {
