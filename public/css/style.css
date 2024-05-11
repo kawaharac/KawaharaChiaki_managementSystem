@@ -9,6 +9,16 @@
 /* body */
 .all_content {
   background: #ECF1F6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  max-height: none;
+}
+
+.d-flex {
+  margin: 0;
+  padding: 0;
+  height: auto;
 }
 
 ul,
@@ -18,14 +28,18 @@ li {
 
 /* サイドバー */
 .sidebar {
-  width: 150px;
-  height: 100vh;
+  width: 200px;
+  padding: 20px;
+  min-height: 100vh !important;
+  max-height: none;
   background-color: #03AAD2;
   font-weight: bold;
 }
 
 .main-container {
   width: 100%;
+  min-height: 100vh;
+  max-height: none;
 }
 
 .sidebar p a {
@@ -66,6 +80,8 @@ li {
 .calendar-td {
   min-width: 100px;
 }
+
+.calendar {}
 
 .day_part {
   color: #494949;
@@ -299,8 +315,12 @@ li {
   border-radius: 5px;
   padding: 0 5px;
   border: none;
-  background: #999;
+  background: #E38EAB;
   color: #FFF;
+}
+
+.category_btn:nth-child(2) {
+  background: #EBBC5D;
 }
 
 .sub_category_btn {
@@ -309,7 +329,7 @@ li {
   border-radius: 5px;
   padding: 0 5px;
   border: none;
-  background: #999;
+  background: #04A9D2;
   color: #FFF;
 }
 

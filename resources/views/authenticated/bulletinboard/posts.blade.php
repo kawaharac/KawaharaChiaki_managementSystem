@@ -52,15 +52,18 @@
         <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
         <input type="submit" value="検索" form="postSearchRequest">
       </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+      <div class="posts_btn">
+        <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
+        <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+      </div>
+      <p>カテゴリー検索</p>
       <ul>
         @foreach($categories as $category)
         <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
         <ul>
           @foreach($category -> subCategories as $sub_category )
           <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
-          <input type="submit" name="category_word" class="category_btn" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+          <input type="submit" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
           <!-- sub_categoryを$Requestにして表示する。postControllerの42行目を発火させるように -->
           @endforeach
         </ul>
