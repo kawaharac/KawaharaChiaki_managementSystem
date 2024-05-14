@@ -15,6 +15,18 @@
   max-height: none;
 }
 
+input {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .d-flex {
   margin: 0;
   padding: 0;
@@ -44,6 +56,12 @@ li {
 
 .sidebar p a {
   color: #FFF;
+  font-size: 0.8rem;
+}
+
+.fas {
+  color: #FFF;
+  margin-right: 5px;
 }
 
 /* トップページ */
@@ -81,7 +99,6 @@ li {
   min-width: 100px;
 }
 
-.calendar {}
 
 .day_part {
   color: #494949;
@@ -293,6 +310,7 @@ li {
 }
 
 /* 掲示板　カテゴリー */
+
 .main_category_name {
   width: 100%;
 }
@@ -317,6 +335,8 @@ li {
   border: none;
   background: #E38EAB;
   color: #FFF;
+  width: 45%;
+  padding: 5px;
 }
 
 .category_btn:nth-child(2) {
@@ -333,6 +353,38 @@ li {
   color: #FFF;
 }
 
+.post_btn a {
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.post_btn input {
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.post_btn {
+  display: block;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: none;
+  background: #04A9D2;
+  text-align: center;
+}
+
+/*いいねした投稿、自分の投稿*/
+.posts_btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
 .main_categories span,
 .sub_categories li input {
   list-style: none;
@@ -345,10 +397,9 @@ li {
   flex-wrap: wrap;
   width: 800px;
   margin: 10px auto;
-  height: 80vh;
-  overflow: scroll;
+  min-height: 100vh;
+  max-height: auto;
   padding: 10px;
-  background: #FFF;
   border-radius: 5px;
 }
 
@@ -368,6 +419,15 @@ li {
 .one_person {
   width: 250px;
   height: 250px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .2);
+  background: #FFF;
+}
+
+.name_full {
+  font-weight: bold;
 }
 
 .search_conditions span {
@@ -389,6 +449,28 @@ li {
   display: none;
 }
 
-.subject_search {
-  padding: 0 5px;
+.search_area {
+  padding: 15px;
+}
+
+.free_word {
+  background-color: #E0E5E9;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border-style: none;
+}
+
+.search_setting {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.border {
+  padding: 10px;
 }

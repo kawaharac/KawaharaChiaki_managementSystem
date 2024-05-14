@@ -47,9 +47,9 @@
   </post_statusdiv>
   <div class="other_area border w-25">
     <div class="border m-4">
-      <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
+      <div class="post_btn"><a href="{{ route('post.input') }}">投稿</a></div>
+      <div class="search_form">
+        <input type="text" class="free_word" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
         <input type="submit" value="検索" form="postSearchRequest">
       </div>
       <div class="posts_btn">

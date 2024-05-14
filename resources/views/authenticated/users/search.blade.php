@@ -1,7 +1,6 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<p>ユーザー検索</p>
 <div class="search_content w-100 border d-flex">
   <div class="reserve_users_area">
     @foreach($users as $user)
@@ -10,7 +9,7 @@
         <span>ID : </span><span>{{ $user->id }}</span>
       </div>
       <div><span>名前 : </span>
-        <a href="{{ route('user.profile', ['id' => $user->id]) }}">
+        <a class="name_full" href="{{ route('user.profile', ['id' => $user->id]) }}">
           <span>{{ $user->over_name }}</span>
           <span>{{ $user->under_name }}</span>
         </a>
@@ -61,23 +60,25 @@
     @endforeach
   </div>
   <div class="search_area w-25 border">
-    <div class="">
+    <div>
       <div>
         <input type="text" class="free_word" name="keyword" placeholder="キーワードを検索" form="userSearchRequest">
       </div>
-      <div>
-        <lavel>カテゴリ</lavel>
-        <select form="userSearchRequest" name="category">
-          <option value="name">名前</option>
-          <option value="id">社員ID</option>
-        </select>
-      </div>
-      <div>
-        <label>並び替え</label>
-        <select name="updown" form="userSearchRequest">
-          <option value="ASC">昇順</option>
-          <option value="DESC">降順</option>
-        </select>
+      <div class="search_setting">
+        <div>
+          <lavel>カテゴリ</lavel>
+          <select form="userSearchRequest" name="category">
+            <option value="name">名前</option>
+            <option value="id">社員ID</option>
+          </select>
+        </div>
+        <div>
+          <label>並び替え</label>
+          <select name="updown" form="userSearchRequest">
+            <option value="ASC">昇順</option>
+            <option value="DESC">降順</option>
+          </select>
+        </div>
       </div>
       <div class="">
         <p class="m-0 search_conditions"><span>検索条件の追加</span></p>
@@ -113,7 +114,7 @@
       <div>
         <input type="reset" value="リセット" form="userSearchRequest">
       </div>
-      <div>
+      <div class="post_btn">
         <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
     </div>
