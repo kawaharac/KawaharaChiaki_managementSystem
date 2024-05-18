@@ -38,6 +38,38 @@ li {
   list-style: none;
 }
 
+.login_background {
+  background-color: #ECF1F6;
+  min-height: 100vh;
+  max-height: auto;
+  display: flex;
+  flex-flow: column;
+}
+
+.login_input {
+  background-color: #FFFFFF;
+  width: 25%;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .2);
+  font-weight: bold;
+}
+
+.image_login {
+  padding-top: 30px;
+  margin: 0 auto;
+}
+
+.image_login img {
+  width: 150px;
+  height: auto;
+}
+
+.text-center {
+  font-weight: lighter;
+}
+
 /* サイドバー */
 .sidebar {
   width: 200px;
