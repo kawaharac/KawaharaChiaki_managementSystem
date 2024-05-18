@@ -22,7 +22,8 @@ class CalendarSettingView
   public function render()
   {
     $html = [];
-    $html[] = '<div class="calendar text-center">';
+    $html[] = '<div class="calendar calendar_admin text-center">';
+    $html[] = '<p>年月</p>';
     $html[] = '<table class="table m-auto border adjust-table">';
     $html[] = '<thead>';
     $html[] = '<tr>';

@@ -99,6 +99,11 @@ li {
   min-width: 100px;
 }
 
+.calendar_admin {
+  background-color: #FFFFFF;
+  padding: 30px;
+}
+
 
 .day_part {
   color: #494949;
