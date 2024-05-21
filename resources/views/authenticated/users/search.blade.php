@@ -115,7 +115,7 @@
         <input type="reset" value="リセット" form="userSearchRequest">
       </div>
       <div class="post_btn">
-        <input type="submit" name="search_btn" value="検索" form="userSearchRequest">
+        <input class="post_btn" type="submit" name="search_btn" value="検索" form="userSearchRequest">
       </div>
     </div>
     <form action="{{ route('user.show') }}" method="get" id="userSearchRequest"></form>

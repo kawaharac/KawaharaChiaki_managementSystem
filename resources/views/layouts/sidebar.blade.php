@@ -20,16 +20,16 @@
   <div class="d-flex">
     <div class="sidebar">
       @section('sidebar')
-      <p><i class="fas fa-house-user"></i><a href="{{ route('top.show') }}">マイページ</a></p>
-      <p><i class="fas fa-tired"></i><a href="/logout">ログアウト</a></p>
-      <p><i class="fas fa-table"></i><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
+      <p><i class="icon_side fas fa-house-user"></i><a href="{{ route('top.show') }}">マイページ</a></p>
+      <p><i class="icon_side fas fa-tired"></i><a href="/logout">ログアウト</a></p>
+      <p><i class="icon_side fas fa-table"></i><a href="{{ route('calendar.general.show',['user_id' => Auth::id()]) }}">スクール予約</a></p>
       <!-- 予約確認とスクール枠登録は管理者のみ表示 -->
       @if(Auth::user()->role != 4)<!--比較演算子に直した-->
-      <p><i class="fas fa-tasks"></i><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
-      <p><i class="fas fa-stamp"></i><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
+      <p><i class="icon_side fas fa-tasks"></i><a href="{{ route('calendar.admin.show',['user_id' => Auth::id()]) }}">スクール予約確認</a></p>
+      <p><i class="icon_side fas fa-stamp"></i><a href="{{ route('calendar.admin.setting',['user_id' => Auth::id()]) }}">スクール枠登録</a></p>
       @endif
-      <p><i class="fas fa-scroll"></i><a href="{{ route('post.show') }}">掲示板</a></p>
-      <p><i class="fas fa-users"></i><a href="{{ route('user.show') }}">ユーザー検索</a></p>
+      <p><i class="icon_side fas fa-scroll"></i><a href="{{ route('post.show') }}">掲示板</a></p>
+      <p><i class="icon_side fas fa-users"></i><a href="{{ route('user.show') }}">ユーザー検索</a></p>
       @show
     </div>
     <div class="main-container">
