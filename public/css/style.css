@@ -219,7 +219,14 @@ li {
 
 /* 掲示板 */
 .sub_categories {
-  display: none;
+  display: block;
+  border-bottom: 2px solid #999;
+  width: 80%;
+}
+
+.sub_categories input {
+  border: none;
+  background-color: transparent;
 }
 
 .post_create_area {
@@ -425,7 +432,24 @@ li {
   cursor: pointer;
 }
 
-. {}
+.main_categories {
+  border-bottom: 2px solid #999;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main_categories::after {
+  /*タイトル横の矢印*/
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid #383839;
+  border-right: 2px solid #383839;
+  transform: rotate(135deg);
+  justify-content: flex-end;
+}
 
 /* ユーザー検索 */
 .reserve_users_area {

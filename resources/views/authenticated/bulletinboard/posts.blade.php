@@ -59,11 +59,12 @@
       <p>カテゴリー検索</p>
       <ul>
         @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
+        <li class="main_categories" category_id="{{ $category->id }}"><span class="category_switch">{{ $category->main_category }}<span></li>
         <ul>
           @foreach($category -> subCategories as $sub_category )
           <!-- サブカテゴリー表示 optgroup = <option>タグをグループ化するためのタグ。 -->
-          <input type="submit" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest">
+          <span class="sub_categories">
+            <input type="submit" name="category_word" value="{{ $sub_category->sub_category }}" form="postSearchRequest"></span>
           <!-- sub_categoryを$Requestにして表示する。postControllerの42行目を発火させるように -->
           @endforeach
         </ul>
